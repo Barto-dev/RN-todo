@@ -1,23 +1,20 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 
-const GoalItem = ({title,index, setCourseGoals}) => {
-
-  const removeGoalHandler = (idx) => {
-    setCourseGoals(currentGoals => [...currentGoals.slice(0, idx), ...currentGoals.slice(idx + 1)]);
-  }
+const GoalItem = ({title,index, onDelete}) => {
 
   return (
-    <View style={styles.listItem}>
-      <Text>{title}</Text>
-      <Button title="Remove" onPress={() => removeGoalHandler(index)} />
-    </View>
+    <TouchableOpacity underlayColor={'blue'} onLongPress={onDelete.bind(null, index)}>
+      <View style={styles.listItem}>
+        <Text>{title}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   listItem: {
-    paddingVertical: 7,
+    paddingVertical: 15,
     paddingHorizontal: 15,
     borderRadius: 10,
     backgroundColor: '#fff',
